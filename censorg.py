@@ -8,8 +8,11 @@ SECRET = "***"
 
 def args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('orgname')
+    parser.add_argument("orgname",help="the organization name")
+    parser.add_argument("-d","--domains",help="retreive hostnames with the same organization field in a SSL certificate",action='store_true')
+    parser.add_argument("-i","--ip",help="Retreive ips with the same organization field in a SSL certificate",action='store_true')
     return parser.parse_args()
+
 
 def banner():
     print("""
@@ -52,9 +55,12 @@ def get_hosts(orgname):
 
 
 if __name__ == '__main__':
-    orgname = args().orgname
     banner()
-    print("[+] Retrieving the hostnames that have SSL certificate with organization : "+orgname)
-    get_domains(orgname)
-    print("[+] Retrieving the hosts that have SSL certificate with organization : "+orgname)
-    get_hosts(orgname)
+    orgname=args().orgname
+    if args().domains:
+        print("[+] Retrieving the hostnames that have SSL certificate with organization : "+orgname)
+        get_domains(orgname)
+    if args().ip:
+        print("[+] Retrieving the hosts that have SSL certificate with organization : "+orgname)
+        get_hosts(orgname)
+
