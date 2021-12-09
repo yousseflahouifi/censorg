@@ -20,6 +20,10 @@ pip install argparse
 ```
 pip install censys
 ```
+* install requests :
+```
+pip install requests
+```
 
 # Setup :
 Censorg uses the Censys API to look for domains and ips with the same Organization field in the SSL certificate, so you will need to get keys from censys and set both UID and SECRET variable in the script (use whatever editor you like) .
