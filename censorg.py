@@ -1,6 +1,8 @@
 import censys.ipv4
 import censys.certificates
 import argparse
+import requests
+
 
 UID = "***"
 SECRET = "***"
@@ -44,6 +46,14 @@ def get_domains(orgname):
             pass
 
 
+def get_crtsh_domain(orgname):
+    url="https://crt.sh/?output=json&O="+orgname
+    r=requests.get(url)
+    json=r.json()
+    for i in json:
+       print(i["common_name"].replace("*.",""))
+
+
 def get_hosts(orgname):
 
     c = censys.ipv4.CensysIPv4(UID, SECRET)
@@ -60,6 +70,7 @@ if __name__ == '__main__':
     if args().domains:
         print("[+] Retrieving the hostnames that have SSL certificate with organization : "+orgname)
         get_domains(orgname)
+        get_crtsh_domain(orgname)
     if args().ip:
         print("[+] Retrieving the hosts that have SSL certificate with organization : "+orgname)
         get_hosts(orgname)
