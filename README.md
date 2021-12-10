@@ -1,6 +1,6 @@
 # What's this tool about ?
 Finding hosts or domain names associated with a company where the domain name does not include the name of the company can sometimes be difficult.  There are common ways to do it such ASN, reverse ip lookup etc.  
-Censorg is a security reconnaissance tool that leverage Censys API to look for domains and hosts with the same Organization field in the SSL certificate.
+Censorg is a security reconnaissance tool that leverage Censys API and crt.sh website to look for domains and hosts with the same Organization field in the SSL certificate.
 
 # Recommended python version :
 Python 3.x.
